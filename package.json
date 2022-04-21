@@ -1,0 +1,27 @@
+{
+  "name": "getir",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "preinstall": "npm install pm2 -g",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest ",
+    "start": "pm2-runtime start ecosystem.config.js --env production",
+    "dev": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "moment": "^2.29.1",
+    "mongoose": "^5.13.7",
+    "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.12"
+  }
+}

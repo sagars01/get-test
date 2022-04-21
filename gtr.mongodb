@@ -1,0 +1,59 @@
+// MongoDB Playground
+// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
+// Make sure you are connected to enable completions and to be able to run a playground.
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+// Select the database to use.
+// use('getir-case-study');
+
+
+
+// db.records.find()
+
+
+// db.records.aggregate([
+//     {
+//         /**
+//          * specifications: The fields to
+//          *   include or exclude.
+//          */
+//         $project: {
+//             key :  1,
+//             createdDate: 1,
+//             createdRange: { $gte : ["$createdAt", new Date("2016-12-27T03:12:14.477Z")] },
+//             totalCount: {
+//                 $gte : [{$sum : "$counts"}, 1500],
+//                 $lte: [{$sum : "$counts"}, 2000]
+//                 }
+//         }
+//     }
+// ])
+
+
+db.records.aggregate(
+    [
+    {
+        $match: {
+          createdAt: {
+              $gt : new ISODate('2016-01-26T00:00:00.000Z'),
+              $lt : new ISODate('2018-02-02T00:00:00.000Z')
+          }
+        }
+    },  
+    {
+        $project: {
+            _id: 0,
+            key :  1,
+            createdAt: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
+            totalCount: { $sum: "$counts" }
+        }
+    }, {
+        $match: {
+          totalCount : {
+              $gt : 100,
+              $lt: 200
+          }
+        }
+    }
+]
+)
