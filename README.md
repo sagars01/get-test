@@ -4,7 +4,8 @@ https://gtr-temp-api.herokuapp.com/records?startDate=2016-12-31&endDate=2017-08-
 
 ## REQUEST DETAILS
 
-METHOD : POST 
+METHOD : POST
+
 REQUEST BODY: 
 ```
 startDate = YYYY-MM-DD
