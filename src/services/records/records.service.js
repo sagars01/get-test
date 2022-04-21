@@ -26,13 +26,13 @@ class RecordService {
                 {
                     $match: {
                         totalCount: {
-                            $gte: conditions.minCount,
-                            $lte: conditions.maxCount
+                            $gte: conditions.minCount || 0,
+                            $lte: conditions.maxCount || Number.POSITIVE_INFINITY
                         }
                     }
                 }
-            ]
 
+            ]
 
 
             let matchingData = await this.recordModel.aggregate(pip);
